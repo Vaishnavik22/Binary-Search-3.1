@@ -3,8 +3,8 @@ Problem: https://leetcode.com/problems/h-index-ii/
 */
 
 
-// Approach 1: Linear
-// TC: O(n)
+// Approach 1: Linear search after sorting
+// TC: O(n log n)
 // SC: O(1)
 class Solution {
     public int hIndex(int[] citations) {
@@ -12,6 +12,7 @@ class Solution {
             return 0;
         }
         
+        Arrays.sort(citations);
         int n = citations.length;
         for (int i = 0; i < n; ++i) {
             int papersWithCitationsGreaterThanOrEqualToI = n - i;
@@ -26,14 +27,15 @@ class Solution {
     }
 }
 
-// Approach 2
-// TC: O(log n)
+// Approach 2: Binary search after sorting
+// TC: O(n log n)
 class Solution {
     public int hIndex(int[] citations) {
         if (citations == null || citations.length == 0) {
             return 0;
         }
         
+        Arrays.sort(citations);
         int n = citations.length;
         int low = 0, high = n - 1;
         while (low <= high) {
